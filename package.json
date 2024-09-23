@@ -1,0 +1,81 @@
+{
+  "name": "model-comments",
+  "displayName": "model-comments",
+  "description": "Show and hide comments in code files meant for LLM's.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.91.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "model-comments.toggleLLMComments",
+        "title": "Toggle LLM Comments"
+      }
+    ],
+    "configuration": {
+      "title": "Model Comments",
+      "properties": {
+        "modelComments.identifier": {
+          "type": "string",
+          "default": "LLM:",
+          "description": "Identifier for LLM comments"
+        },
+        "modelComments.defaultState": {
+          "type": "string",
+          "enum": [
+            "show",
+            "hide"
+          ],
+          "default": "show",
+          "description": "Default visibility state for LLM comments"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "model-comments.toggleLLMComments",
+        "key": "ctrl+alt+l",
+        "mac": "cmd+alt+l",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@types/vscode": "1.91.0",
+    "@typescript-eslint/eslint-plugin": "^8.3.0",
+    "@typescript-eslint/parser": "^8.3.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.9.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.5.4",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bigadamknight/model-comments.git"
+  },
+  "publisher": "bigadamknight"
+}
